@@ -1,0 +1,88 @@
+
+
+.back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.back:hover {
+
+    border: solid 2px #560bad;
+    border-radius: 50%;
+}
+
+.back:after {
+    position: absolute;
+    display: block;
+    content: "";
+    color: #560bad;
+    width: 25px;
+    height: 15px;
+    top: -1px;
+    border-bottom: solid 2px;
+    transform: translatex(4px);
+}
+
+.back:before {
+    position: absolute;
+    display: block;
+    content: "";
+    color: #560bad;
+    width: 8px;
+    height: 8px;
+    border-top: solid 2px;
+    border-left: solid 2px;
+    top: 50%;
+    left: 2px;
+    transform-origin: 0% 0%;
+    transform: rotatez(-45deg);
+
+}
+
+.back:hover:before {
+    animation: aniArrow01 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+}
+
+.back:hover:after {
+    animation: aniArrow02 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+}
+
+
+@keyframes aniArrow01 {
+    0% {
+        transform: rotatez(-45deg) translateY(30px) translateX(30px);
+    }
+
+    100% {
+        transform: rotatez(-45deg) translateY(-35px) translateX(-35px);
+    }
+}
+
+
+@keyframes aniArrow02 {
+    0% {
+        transform: translateX(45px);
+    }
+
+    100% {
+        transform: translateX(-44px);
+    }
+}
+
+@keyframes borderAni {
+    0% {
+        border: solid 2px white;
+    }
+
+    100% {
+        border: solid 2px white;
+        border-radius: 50%;
+    }
+}
