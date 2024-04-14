@@ -1,11 +1,11 @@
 import { useState, useEffect, FormEvent } from "react";
 
 export function AdditionSubtraction() {
-    const [result, setResult] = useState<number>();
-    const [answer, setAnswer] = useState<number>();
-    const [validation, setValidation] = useState<boolean | null>();
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [numbers, setNumbers] = useState<number[]>([]);
+    const [result, setResult] = useState<number>()
+    const [answer, setAnswer] = useState<number>()
+    const [validation, setValidation] = useState<boolean | null>()
+    const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [numbers, setNumbers] = useState<number[]>([])
     const [operator, setOperator] = useState<number>()
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export function AdditionSubtraction() {
         const generateNumbers = () => {
             const generatedNumbers = []
             for (let i = 0; i < userNumber; i++) { 
-                const newNumber = Math.floor(Math.random() * 100) + 1;
+                const newNumber = Math.floor(Math.random() * 100) + 1
                 generatedNumbers.push(newNumber)
             }
             setNumbers(generatedNumbers)
@@ -36,7 +36,7 @@ export function AdditionSubtraction() {
             if (prob === 1) {
                 calculatedResult = numbers.reduce((acumulador, elemento) => acumulador + elemento, 0)
             } else {
-                calculatedResult = numbers.reduce((acumulador, elemento) => acumulador - elemento, 0);
+                calculatedResult = numbers.reduce((acumulador, elemento) => acumulador - elemento, 0)
             }
             setResult(calculatedResult)
             console.log(calculatedResult)
@@ -81,9 +81,9 @@ export function AdditionSubtraction() {
                                 <input
                                     className={`${validation ? "correct" : "incorrect"}`}
                                     onChange={(e) => {
-                                        const inputValue = parseInt(e.target.value, 10);
-                                        setAnswer(inputValue);
-                                        setValidation(null);
+                                        const inputValue = parseInt(e.target.value, 10)
+                                        setAnswer(inputValue)
+                                        setValidation(null)
                                     }}
                                 />
                             </article>
@@ -95,5 +95,5 @@ export function AdditionSubtraction() {
                 </div>
             )}
         </section>
-    );
+    )
 }
