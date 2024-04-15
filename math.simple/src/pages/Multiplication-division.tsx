@@ -95,13 +95,16 @@ export function MultiplicationDivision() {
                     </div>
                     <div>
                         <form onSubmit={validateAnswer}>
-                            <article>
-                                <span>
-                                    {numbers.map((number, index) => (
-                                        <p key={index}>{number} {operator === 1 ? "*" : "/"}</p>
-                                    ))}
-                                </span>
-                            </article>
+                            <div>
+                                {numbers.map((number, index) => (
+                                    <article key={index}>
+                                        {index === numbers.length -1
+                                            ? (<span>{number}</span>)
+                                            : (<span>{number} {operator === 1 ? "*" : "/"}</span>)
+                                        }
+                                    </article>
+                                ))}
+                            </div>
                             <article>
                                 <input
                                     className={`${validation ? "correct" : "incorrect"}`}

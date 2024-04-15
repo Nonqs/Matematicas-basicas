@@ -1,4 +1,5 @@
 import { useState, useEffect, FormEvent } from "react";
+import { useParams } from "react-router-dom";
 
 export function AdditionSubtraction() {
     const [result, setResult] = useState<number>()
@@ -7,15 +8,20 @@ export function AdditionSubtraction() {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [numbers, setNumbers] = useState<number[]>([])
     const [operator, setOperator] = useState<number>()
+    const { userNumbers } = useParams()
+    let userNumber: number
+    if (userNumbers) {
+        userNumber = parseInt(userNumbers)
+    }
 
     useEffect(() => {
-        const userNumber = 8
+
         const prob = Math.floor(Math.random() * 2) + 1
         setOperator(prob)
 
         const generateNumbers = () => {
             const generatedNumbers = []
-            for (let i = 0; i < userNumber; i++) { 
+            for (let i = 0; i < userNumber; i++) {
                 const newNumber = Math.floor(Math.random() * 100) + 1
                 generatedNumbers.push(newNumber)
             }
@@ -42,11 +48,11 @@ export function AdditionSubtraction() {
             console.log(calculatedResult)
         }
 
-    }, [numbers]) 
+    }, [numbers])
 
     const validateAnswer = (e: FormEvent<HTMLFormElement>) => {
 
-        console.log(result,answer)
+        console.log(result, answer)
         e.preventDefault()
         if (result === answer) {
             setValidation(true)
@@ -70,13 +76,16 @@ export function AdditionSubtraction() {
                     </div>
                     <div>
                         <form onSubmit={validateAnswer}>
-                            <article>
-                                <span>
-                                    {numbers.map((number, index) => (
-                                        <p key={index}>{number} {operator === 1 ? "+" : "-"}</p>
-                                    ))}
-                                </span>
-                            </article>
+                            <div>
+                                {numbers.map((number, index) => (
+                                    <article key={index}>
+                                        {index === numbers.length -1
+                                            ? (<span>{number}</span>)
+                                            : (<span>{number} {operator === 1 ? "+" : "-"}</span>)
+                                        }
+                                    </article>
+                                ))}
+                            </div>
                             <article>
                                 <input
                                     className={`${validation ? "correct" : "incorrect"}`}
@@ -90,10 +99,11 @@ export function AdditionSubtraction() {
                         </form>
                     </div>
                     <div>
-                        <button>Skip</button>
+                        <button onClick={() => { setNumbers([]) }}>Skip</button>
                     </div>
                 </div>
-            )}
-        </section>
+            )
+            }
+        </section >
     )
 }
