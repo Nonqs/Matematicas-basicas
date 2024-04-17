@@ -1,0 +1,64 @@
+
+.numbers-button {
+    width: 4em;
+    height: 4em;
+}
+
+.skip-button {
+    --skip-color: rgba(255, 219, 88, 1);
+    border: 2px solid var(--skip-color);
+    color: var(--skip-color);
+    background-color: rgba(255, 219, 88, 0.1);
+}
+
+.skip-button:before {
+    background: var(--skip-color);
+}
+
+
+.skip-button:active:before {
+    background: yellow;
+    transition: background 0s;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-secondary {
+    padding: 3em;
+    color: #560bad;
+}
+
+.link-box {
+    text-decoration: none;
+    border: #560bad 2px solid;
+    border-radius: 10px;
+    padding: 1em;
+}
+
+.text {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4em;
+}
+
+.numbers {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+    color: #560bad;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.incorrect {
+    background-color: rgb(128, 0, 32, 0.1);
+}
+
+.correct {
+    background-color: rgb(107, 142, 35, 0.1);
+}

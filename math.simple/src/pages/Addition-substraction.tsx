@@ -1,13 +1,17 @@
 import { useState, useEffect, FormEvent } from "react";
 import { useParams } from "react-router-dom";
+import "../styles/OperationPage.css"
+import { Title } from "../components/Title";
+import { Load } from "../components/Load";
 
 export function AdditionSubtraction() {
     const [result, setResult] = useState<number>()
     const [answer, setAnswer] = useState<number>()
-    const [validation, setValidation] = useState<boolean | null>()
+    const [validation, setValidation] = useState<boolean | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [numbers, setNumbers] = useState<number[]>([])
     const [operator, setOperator] = useState<number>()
+    const [send, setSend] = useState<boolean | null>(null)
     const { userNumbers } = useParams()
     let userNumber: number
     if (userNumbers) {
@@ -52,54 +56,58 @@ export function AdditionSubtraction() {
 
     const validateAnswer = (e: FormEvent<HTMLFormElement>) => {
 
-        console.log(result, answer)
         e.preventDefault()
+        setSend(true)
+
         if (result === answer) {
             setValidation(true)
-
             setTimeout(() => {
                 setNumbers([])
+                setSend(null)
             }, 1000)
         } else {
             setValidation(false)
+            setTimeout(() => {
+                setSend(null)
+            }, 1000)
         }
     }
 
     return (
-        <section>
+        <section className="container">
             {isLoading ? (
-                <div>Loading...</div>
+                <div>
+                    <Title />
+                    <Load/>
+                </div>
             ) : (
                 <div>
-                    <div>
-                        <h2>MATH.SIMPLE</h2>
-                    </div>
+                    <Title></Title>
                     <div>
                         <form onSubmit={validateAnswer}>
-                            <div>
+                            <div className="numbers">
                                 {numbers.map((number, index) => (
                                     <article key={index}>
-                                        {index === numbers.length -1
+                                        {index === numbers.length - 1
                                             ? (<span>{number}</span>)
-                                            : (<span>{number} {operator === 1 ? "+" : "-"}</span>)
+                                            : (<span>{operator === 2 && index === 0 && ("-")} {number} {operator === 1 ? "+" : "-"} </span>)
                                         }
                                     </article>
                                 ))}
                             </div>
                             <article>
                                 <input
-                                    className={`${validation ? "correct" : "incorrect"}`}
+                                    className={send !== null ? (validation ? "correct" : "incorrect") : ""}
                                     onChange={(e) => {
-                                        const inputValue = parseInt(e.target.value, 10)
+                                        const inputValue = parseInt(e.target.value, 10);
                                         setAnswer(inputValue)
-                                        setValidation(null)
                                     }}
                                 />
                             </article>
                         </form>
                     </div>
                     <div>
-                        <button onClick={() => { setNumbers([]) }}>Skip</button>
+                        <button className="skip-button" onClick={() => { setNumbers([]), setIsLoading(true) }}>Skip</button>
                     </div>
                 </div>
             )

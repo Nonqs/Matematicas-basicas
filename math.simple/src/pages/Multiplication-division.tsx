@@ -1,5 +1,7 @@
 import { FormEvent, useEffect, useState } from "react"
-
+import "../styles/OperationPage.css"
+import { Title } from "../components/Title"
+import { Load } from "../components/Load"
 
 export function MultiplicationDivision() {
     const [result, setResult] = useState<number>()
@@ -8,17 +10,17 @@ export function MultiplicationDivision() {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [numbers, setNumbers] = useState<number[]>([])
     const [operator, setOperator] = useState<number>(0)
+    const [send, setSend] = useState<boolean | null>(null)
 
     useEffect(() => {
+        
         const userNumber = 2
 
-        if (operator === 0) {
-            const prob = Math.floor(Math.random() * 2) + 1
-            setOperator(prob)
-        }
+        const prob = Math.floor(Math.random() * 2) + 1
+        setOperator(prob)
 
         const generateNumbers = () => {
-
+            
             const generatedNumbers = []
             if (operator === 1) {
                 for (let i = 0; i < userNumber; i++) {
@@ -32,9 +34,9 @@ export function MultiplicationDivision() {
 
                 const secondNumber = Math.floor(Math.random() * 10) + 2
                 generatedNumbers.push(secondNumber)
-
-                setNumbers(generatedNumbers)
             }
+
+            setNumbers(generatedNumbers)
 
         }
 
@@ -68,8 +70,8 @@ export function MultiplicationDivision() {
 
     const validateAnswer = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setSend(true)
 
-        console.log(result, answer)
         const parsedAnswer = parseFloat(answer?.toString() || "0").toFixed(2)
         const fixedResult = result?.toFixed(2)
 
@@ -78,46 +80,50 @@ export function MultiplicationDivision() {
             setTimeout(() => {
                 setOperator(0)
                 setNumbers([])
+                setSend(null)
             }, 1000)
         } else {
-            setValidation(false);
+            setValidation(false)
+            setTimeout(() => {
+                setSend(null)
+            }, 1000)
         }
     }
 
     return (
-        <section>
+        <section className="container">
             {isLoading ? (
-                <div>Loading...</div>
+                <div>
+                    <Title />
+                    <Load />
+                </div>
             ) : (
                 <div>
-                    <div>
-                        <h2>MATH.SIMPLE</h2>
-                    </div>
+                    <Title />
                     <div>
                         <form onSubmit={validateAnswer}>
-                            <div>
+                            <div className="numbers">
                                 {numbers.map((number, index) => (
                                     <article key={index}>
-                                        {index === numbers.length -1
+                                        {index === numbers.length - 1
                                             ? (<span>{number}</span>)
-                                            : (<span>{number} {operator === 1 ? "*" : "/"}</span>)
+                                            : (<span>{number} {operator === 1 ? " x" : " /"}</span>)
                                         }
                                     </article>
                                 ))}
                             </div>
                             <article>
                                 <input
-                                    className={`${validation ? "correct" : "incorrect"}`}
+                                    className={send !== null ? (validation ? "correct" : "incorrect") : ""}
                                     onChange={(e) => {
                                         setAnswer(e.target.value)
-                                        setValidation(null)
                                     }}
                                 />
                             </article>
                         </form>
                     </div>
                     <div>
-                        <button>Skip</button>
+                    <button className="skip-button" onClick={() => { setNumbers([]), setIsLoading(true) }}>Skip</button>
                     </div>
                 </div>
             )}
