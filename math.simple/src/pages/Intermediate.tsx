@@ -6,7 +6,8 @@ import { Title } from "../components/Title"
 export function Intermediate() {
 
     const [userNumber, setUserNumbers] = useState<number>()
-    const buttons: number[] = [2,3,4,5,6,7,8]
+    const [userOperator, setUserOperator] = useState<string>()
+    const buttons: number[] = [2, 3, 4, 5, 6, 7, 8]
 
     return (
         <div className="container">
@@ -14,14 +15,31 @@ export function Intermediate() {
             <div>
                 <span className="text">How many numbers you want for the operations?</span>
                 <article>
-                    {buttons.map(button =>(
-                        <button className="numbers-button" onClick={()=>{setUserNumbers(button)}}>{button}</button>
+                    {buttons.map(button => (
+                        <button
+                            key={button}
+                            className={`${userNumber === button ? "isSelected" : ""} numbers-button`}
+                            onClick={() => { setUserNumbers(button) }}
+                        >
+                            {button}
+                        </button>
                     ))}
                 </article>
             </div>
+            <div>
+                <span className="text">How many numbers you want for the operations?</span>
+                <article>
+                    <button className="select" onClick={() => { setUserOperator("only") }}>
+                        addition-only or subtraction-only operations
+                    </button>
+                    <button className="select" onClick={() => { setUserOperator("Combined") }}>
+                        Combined operations of addition and subtraction
+                    </button>
+                </article>
+            </div>
             {
-                userNumber && (
-                    <Navigate to={`/add-sub/${userNumber}`} ></Navigate>
+                userNumber && userOperator && (
+                    <Navigate to={`/add-sub/${userNumber}/${userOperator}`} ></Navigate>
                 )
             }
         </div>
