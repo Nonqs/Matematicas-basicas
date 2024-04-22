@@ -13,14 +13,14 @@ export function MultiplicationDivision() {
     const [send, setSend] = useState<boolean | null>(null)
 
     useEffect(() => {
-        
+
         const userNumber = 2
 
         const prob = Math.floor(Math.random() * 2) + 1
         setOperator(prob)
 
         const generateNumbers = () => {
-            
+
             const generatedNumbers = []
             if (operator === 1) {
                 for (let i = 0; i < userNumber; i++) {
@@ -107,7 +107,7 @@ export function MultiplicationDivision() {
                                     <article key={index}>
                                         {index === numbers.length - 1
                                             ? (<span>{number}</span>)
-                                            : (<span>{number} {operator === 1 ? " x" : " /"}</span>)
+                                            : (<span>{number} {operator === 1 ? " x" : " /"} &nbsp;</span>)
                                         }
                                     </article>
                                 ))}
@@ -120,10 +120,16 @@ export function MultiplicationDivision() {
                                     }}
                                 />
                             </article>
+
+                            {operator === 2 &&
+                                (
+                                    <span style={{color: "#560bad"}}>Round to 2 digits</span>
+                                )
+                            }
                         </form>
                     </div>
                     <div>
-                    <button className="skip-button" onClick={() => { setNumbers([]), setIsLoading(true) }}>Skip</button>
+                        <button className="skip-button" onClick={() => { setNumbers([]), setIsLoading(true) }}>Skip</button>
                     </div>
                 </div>
             )}

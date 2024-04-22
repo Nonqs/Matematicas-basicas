@@ -11,17 +11,16 @@ export function AdditionSubtraction() {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [numbers, setNumbers] = useState<number[]>([])
     const [operator, setOperator] = useState<number>()
+    const [operatorCombined, setOperatorCombined] = useState<string[]>([])
     const [send, setSend] = useState<boolean | null>(null)
-    const { userNumbers } = useParams()
+    const { userNumbers, userOperator } = useParams()
     let userNumber: number
+
     if (userNumbers) {
         userNumber = parseInt(userNumbers)
     }
 
     useEffect(() => {
-
-        const prob = Math.floor(Math.random() * 2) + 1
-        setOperator(prob)
 
         const generateNumbers = () => {
             const generatedNumbers = []
@@ -32,9 +31,32 @@ export function AdditionSubtraction() {
             setNumbers(generatedNumbers)
         }
 
+        const generateOperators = () => {
+            if (userOperator === "only") {
+
+                const prob = Math.floor(Math.random() * 2) + 1
+                setOperator(prob)
+
+            } else {
+
+
+                const newOperators = []
+                for (let i = 0; i < userNumber; i++) {
+                    const prob = Math.floor(Math.random() * 2) + 1
+                    if (prob === 1) {
+                        newOperators.push("+")
+                    } else {
+                        newOperators.push("-")
+                    }
+                }
+                setOperatorCombined(newOperators)
+            }
+        }
+
         if (numbers.length === 0) {
 
             generateNumbers()
+            generateOperators()
 
             setTimeout(() => {
                 setIsLoading(false)
@@ -42,14 +64,35 @@ export function AdditionSubtraction() {
 
         } else {
 
-            let calculatedResult
-            if (prob === 1) {
-                calculatedResult = numbers.reduce((acumulador, elemento) => acumulador + elemento, 0)
+            let calculatedResult = 0
+
+            if (userOperator === "only") {
+
+                if (operator === 1) {
+                    calculatedResult = numbers.reduce((acumulador, elemento) => acumulador + elemento, 0)
+                } else {
+                    calculatedResult = numbers.reduce((acumulador, elemento) => acumulador - elemento, 0)
+                }
+                setResult(calculatedResult)
+
             } else {
-                calculatedResult = numbers.reduce((acumulador, elemento) => acumulador - elemento, 0)
+
+                for (let i = 0; i < userNumber; i++) {
+
+                    if (operatorCombined[i] === "+") {
+
+                        calculatedResult = calculatedResult + numbers[i]
+
+                    } else {
+
+                        calculatedResult = calculatedResult - numbers[i]
+
+                    }
+
+                }
+                setResult(calculatedResult)
+                console.log(calculatedResult)
             }
-            setResult(calculatedResult)
-            console.log(calculatedResult)
         }
 
     }, [numbers])
@@ -78,7 +121,7 @@ export function AdditionSubtraction() {
             {isLoading ? (
                 <div>
                     <Title />
-                    <Load/>
+                    <Load />
                 </div>
             ) : (
                 <div>
@@ -87,12 +130,34 @@ export function AdditionSubtraction() {
                         <form onSubmit={validateAnswer}>
                             <div className="numbers">
                                 {numbers.map((number, index) => (
-                                    <article key={index}>
-                                        {index === numbers.length - 1
-                                            ? (<span>{number}</span>)
-                                            : (<span>{operator === 2 && index === 0 && ("-")} {number} {operator === 1 ? "+" : "-"} </span>)
+                                    <div key={index}>
+                                        {userOperator === "only"
+                                            ? (
+                                                <article>
+                                                    {index === numbers.length - 1
+                                                        ? (
+                                                            <span>{number}</span>
+                                                        )
+                                                        : (
+                                                            <span>{operator === 2 && index === 0 && ("-")} {number} {operator === 1 ? "+" : "-"}</span>
+                                                        )
+                                                    }
+                                                </article>
+                                            )
+                                            : (
+                                                <article>
+                                                    {index === 0
+                                                        ? (
+                                                            <span> {operatorCombined[index] === "-" && ("-")} {numbers[index]} </span>
+                                                        )
+                                                        : (
+                                                            <span> &nbsp;{operatorCombined[index]} {numbers[index]} </span>
+                                                        )}
+
+                                                </article>
+                                            )
                                         }
-                                    </article>
+                                    </div>
                                 ))}
                             </div>
                             <article>
@@ -109,7 +174,7 @@ export function AdditionSubtraction() {
                     <div>
                         <button className="skip-button" onClick={() => { setNumbers([]), setIsLoading(true) }}>Skip</button>
                     </div>
-                </div>
+                </div >
             )
             }
         </section >

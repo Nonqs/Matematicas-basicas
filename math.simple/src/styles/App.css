@@ -53,6 +53,16 @@ button:before {
     border-radius: 50%;
 }
 
+.select:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 100px;
+    width: 150%;
+    border-radius: 50%;
+}
+
 button:hover {
     color: #fff;
 }
@@ -71,4 +81,10 @@ button:hover:before {
 button:active:before {
     background: #3a0ca3;
     transition: background 0s;
+}
+
+
+.isSelected {
+    background-color: #560bad;
+    color: #fff;
 }
