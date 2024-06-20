@@ -4,6 +4,7 @@ import { Title } from "../components/Title"
 import { Load } from "../components/Load"
 
 export function MultiplicationDivision() {
+
     const [result, setResult] = useState<number>()
     const [answer, setAnswer] = useState<string>()
     const [validation, setValidation] = useState<boolean | null>()
@@ -16,8 +17,12 @@ export function MultiplicationDivision() {
 
         const userNumber = 2
 
-        const prob = Math.floor(Math.random() * 2) + 1
-        setOperator(prob)
+        if (operator === 0) {
+
+            const prob = Math.floor(Math.random() * 2) + 1
+            setOperator(prob)
+
+        }
 
         const generateNumbers = () => {
 
@@ -72,22 +77,34 @@ export function MultiplicationDivision() {
         e.preventDefault()
         setSend(true)
 
-        const parsedAnswer = parseFloat(answer?.toString() || "0").toFixed(2)
-        const fixedResult = result?.toFixed(2)
+        const parsedAnswer = parseFloat(answer?.toString() || "0")
+        const fixedResult = result || 0;
 
-        if (fixedResult === parsedAnswer) {
-            setValidation(true)
-            setTimeout(() => {
-                setOperator(0)
-                setNumbers([])
-                setSend(null)
-            }, 1000)
+        if (operator === 1) {
+            
+            if (fixedResult === parsedAnswer) {
+                setValidation(true)
+            } else {
+                setValidation(false)
+            }
         } else {
-            setValidation(false)
-            setTimeout(() => {
-                setSend(null)
-            }, 1000)
+            
+            const lowerBound = fixedResult - 0.01
+            const upperBound = fixedResult + 0.01
+
+            if (parsedAnswer >= lowerBound && parsedAnswer <= upperBound) {
+                setValidation(true)
+            } else {
+                setValidation(false)
+            }
         }
+
+        setTimeout(() => {
+            setOperator(0)
+            setNumbers([])
+            setSend(null)
+        }, 1000)
+
     }
 
     return (
@@ -123,7 +140,7 @@ export function MultiplicationDivision() {
 
                             {operator === 2 &&
                                 (
-                                    <span style={{color: "#560bad"}}>Round to 2 digits</span>
+                                    <span style={{ color: "#560bad" }}>Round to 2 digits</span>
                                 )
                             }
                         </form>

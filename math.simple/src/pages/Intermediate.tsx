@@ -27,7 +27,7 @@ export function Intermediate() {
                 </article>
             </div>
             <div>
-                <span className="text">How many numbers you want for the operations?</span>
+                <span className="text">What type of operations do you want to practice?</span>
                 <article>
                     <button className="select" onClick={() => { setUserOperator("only") }}>
                         addition-only or subtraction-only operations
