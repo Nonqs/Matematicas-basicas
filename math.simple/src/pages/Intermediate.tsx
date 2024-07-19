@@ -6,7 +6,7 @@ import { Title } from "../components/Title"
 export function Intermediate() {
 
     const [userNumber, setUserNumbers] = useState<number>()
-    const [userOperator, setUserOperator] = useState<string>()
+    const [userOperators, setUserOperators] = useState<string>()
     const buttons: number[] = [2, 3, 4, 5, 6, 7, 8]
 
     return (
@@ -29,17 +29,17 @@ export function Intermediate() {
             <div>
                 <span className="text">What type of operations do you want to practice?</span>
                 <article>
-                    <button className="select" onClick={() => { setUserOperator("only") }}>
+                    <button className="select" onClick={() => { setUserOperators("only") }}>
                         addition-only or subtraction-only operations
                     </button>
-                    <button className="select" onClick={() => { setUserOperator("Combined") }}>
+                    <button className="select" onClick={() => { setUserOperators("Combined") }}>
                         Combined operations of addition and subtraction
                     </button>
                 </article>
             </div>
             {
-                userNumber && userOperator && (
-                    <Navigate to={`/add-sub/${userNumber}/${userOperator}`} ></Navigate>
+                userNumber && userOperators && (
+                    <Navigate to={`/add-sub/${userNumber}/${userOperators}`} ></Navigate>
                 )
             }
         </div>

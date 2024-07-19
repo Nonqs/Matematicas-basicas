@@ -11,7 +11,7 @@ export default function RoutesApp() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/add-sub" element={<Intermediate />} />
-                    <Route path="/add-sub/:userNumbers/:userOperator" element={<AdditionSubtraction />} />
+                    <Route path="/add-sub/:userNumbers/:userOperators" element={<AdditionSubtraction />} />
                     <Route path="/mult-div" element={<MultiplicationDivision />} />
                 </Routes>
             </BrowserRouter>
