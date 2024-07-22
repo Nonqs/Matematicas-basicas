@@ -2,90 +2,63 @@ import { FormEvent, useEffect, useState } from "react"
 import "../styles/OperationPage.css"
 import { Title } from "../components/Title"
 import { Load } from "../components/Load"
+import { generateOperators } from "../utils/common/generateOperator"
+import generateNumbers from "../utils/common/generateNumbers"
+import { arithmeticValidator } from "../utils/results/arithmeticValidator"
 
 export function MultiplicationDivision() {
 
-    const [result, setResult] = useState<number>()
-    const [answer, setAnswer] = useState<string>()
+    const [answer, setAnswer] = useState<number | string>("");
     const [validation, setValidation] = useState<boolean | null>()
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [numbers, setNumbers] = useState<number[]>([])
-    const [operator, setOperator] = useState<number>(0)
+    const [operators, setOperators] = useState<string[]>([]);
     const [send, setSend] = useState<boolean | null>(null)
+    const [operator, setOperator] = useState<string>("")
+    const quantityOfNumbers = 2
 
     useEffect(() => {
 
-        const userNumber = 2
+        if (operators.length === 0 || numbers.length === 0) {
 
-        if (operator === 0) {
-
-            const prob = Math.floor(Math.random() * 2) + 1
-            setOperator(prob)
-
-        }
-
-        const generateNumbers = () => {
-
-            const generatedNumbers = []
-            if (operator === 1) {
-                for (let i = 0; i < userNumber; i++) {
-                    const newNumber = Math.floor(Math.random() * 10) + 2
-                    generatedNumbers.push(newNumber)
-                }
-            } else {
-
-                const firstNumber = Math.floor(Math.random() * 100) + 2
-                generatedNumbers.push(firstNumber)
-
-                const secondNumber = Math.floor(Math.random() * 10) + 2
-                generatedNumbers.push(secondNumber)
-            }
-
-            setNumbers(generatedNumbers)
-
-        }
-
-        if (numbers.length === 0) {
-
-            generateNumbers()
+            let userOperator = Math.floor(Math.random() * 2) + 1 == 1 ?("multiplication") : ("division")
+            setOperator(userOperator)
+            setOperators(generateOperators({userOperator, userNumber:quantityOfNumbers}))
+            setNumbers(generateNumbers({userNumber: quantityOfNumbers}))
 
             setTimeout(() => {
                 setIsLoading(false)
             }, 1000)
 
-        } else {
-
-            let calculatedResult
-            if (operator === 1) {
-                const firstNumber = numbers[0]
-                const secondNumber = numbers[1]
-
-                calculatedResult = firstNumber * secondNumber
-            } else {
-                const firstNumber = numbers[0]
-                const secondNumber = numbers[1]
-
-                calculatedResult = firstNumber / secondNumber
-            }
-            setResult(calculatedResult)
-            console.log(calculatedResult)
         }
 
     }, [numbers])
 
     const validateAnswer = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        const result = arithmeticValidator({ operators, numbers });
         setSend(true)
 
         const parsedAnswer = parseFloat(answer?.toString() || "0")
         const fixedResult = result || 0;
 
-        if (operator === 1) {
+        if (operator === "multiplication") {
             
             if (fixedResult === parsedAnswer) {
                 setValidation(true)
+
+                setTimeout(() => {
+                    setNumbers([])
+                    setAnswer("");
+                    setSend(null)
+                }, 1000)
             } else {
                 setValidation(false)
+
+                setTimeout(() => {
+                    setAnswer("");
+                    setSend(null)
+                }, 1000)
             }
         } else {
             
@@ -94,16 +67,21 @@ export function MultiplicationDivision() {
 
             if (parsedAnswer >= lowerBound && parsedAnswer <= upperBound) {
                 setValidation(true)
+
+                setTimeout(() => {
+                    setNumbers([])
+                    setAnswer("");
+                    setSend(null)
+                }, 1000)
             } else {
                 setValidation(false)
+
+                setTimeout(() => {
+                    setAnswer("");
+                    setSend(null)
+                }, 1000)
             }
         }
-
-        setTimeout(() => {
-            setOperator(0)
-            setNumbers([])
-            setSend(null)
-        }, 1000)
 
     }
 
@@ -121,12 +99,27 @@ export function MultiplicationDivision() {
                         <form onSubmit={validateAnswer}>
                             <div className="numbers">
                                 {numbers.map((number, index) => (
-                                    <article key={index}>
-                                        {index === numbers.length - 1
-                                            ? (<span>{number}</span>)
-                                            : (<span>{number} {operator === 1 ? " x" : " /"} &nbsp;</span>)
+                                     <div key={index}>
+                                        {index === 0
+                                        
+                                            ?(
+                                                <article>
+                                                    <span>
+                                                        {number}
+                                                    </span>
+                                                </article>
+                                            )
+                                            :(
+                                                <article>
+                                                    <span>
+                                                        {operators[index]}
+                                                        {number}
+                                                    </span>
+                                                </article>
+                                            )
+                                        
                                         }
-                                    </article>
+                                   </div>
                                 ))}
                             </div>
                             <article>
@@ -135,10 +128,11 @@ export function MultiplicationDivision() {
                                     onChange={(e) => {
                                         setAnswer(e.target.value)
                                     }}
+                                    value={answer}
                                 />
                             </article>
 
-                            {operator === 2 &&
+                            {operators[0] === "/" &&
                                 (
                                     <span style={{ color: "#560bad" }}>Round to 2 digits</span>
                                 )
