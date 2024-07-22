@@ -18,6 +18,27 @@ Visit the Math.simple website!
 - **Result Validation:** Provides answers so users can check their solutions.
 - **Intuitive User Interface:** Designed to be user-friendly, offering a smooth learning experience.
 
+## Checklist
+
+- **Combined Operations:**
+  - [x] Addition and Subtraction
+  - [x] Multiplication and Division
+  - [ ] Exponents and Roots
+  - [ ] Logarithms and Exponents
+
+- **Single Operations:**
+  - [ ] Addition
+  - [ ] Subtraction
+  - [ ] Multiplication
+  - [ ] Exponents
+  - [ ] Roots
+  - [ ] Logarithms
+
+- **Geometric Operations:**
+  - [ ] Areas of shapes
+  - [ ] Perimeters of shapes
+
+
 ## Local Installation
 
 To run Math.simple locally, follow these steps:
