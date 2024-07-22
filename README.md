@@ -25,13 +25,13 @@ To run Math.simple locally, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/math-simple.git
+    git clone https://github.com/your-username/math.simple.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd math-simple
+    cd math.simple
     ```
 
 3. Install the dependencies:
