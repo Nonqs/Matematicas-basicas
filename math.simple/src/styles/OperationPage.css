@@ -29,8 +29,9 @@
 }
 
 .title-secondary {
-    padding: 3em;
+    padding: 2em;
     color: #560bad;
+    margin-bottom: 0;
 }
 
 .link-box {

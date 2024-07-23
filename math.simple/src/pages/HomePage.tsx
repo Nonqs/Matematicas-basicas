@@ -26,7 +26,7 @@ export function HomePage() {
               <Link to={"/"}>
                 <button>/</button>
               </Link>
-              <Link to={"/"}>
+              <Link to={"/exp"}>
                 <button>
                   x<sup>2</sup>
                 </button>
