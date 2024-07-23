@@ -1,90 +1,136 @@
 body {
-    height: 90vh;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  height: 90vh;
+  font-family: "Edu AU VIC WA NT Hand", cursive;
 }
 
 .home {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
-    text-align: center;
-    color: #560bad;
-    margin-bottom: 4em;
+  text-align: center;
+  color: #560bad;
+  font-size: 2.5em;
+  margin-bottom: 1.5em;
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.home-container {
+  width: 100%;
+  display: flex;
+}
+
+.single-geo-container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.combined-container{
+    width: 40%;
     text-align: center;
+}
+
+.subtitle {
+  color: #3a0ca3;
+}
+
+.buttons-container {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+    justify-content: center; 
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.separator {
+  border: #560bad 1px solid;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: auto;
 }
 
 button {
-    --color: #560bad;
-    display: inline-block;
-    width: 8em;
-    height: 2.6em;
-    line-height: 2.5em;
-    margin: 20px;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid var(--color);
-    transition: color .5s;
-    z-index: 1;
-    font-size: 17px;
-    border-radius: 6px;
-    font-weight: 500;
-    color: var(--color);
-    background-color: rgba(86, 11, 173, 0.1);
+  --color: #560bad;
+  display: inline-block;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
+  background-color: rgba(86, 11, 173, 0.1);
+  vertical-align: middle;
+  text-align: center;
 }
 
 button:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    background: var(--color);
-    height: 150px;
-    width: 200px;
-    border-radius: 50%;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
 }
 
+button sup {
+  font-size: 0.8em;
+  vertical-align: super;
+}
+
+button img {
+  width: 1.8em;
+  height: auto;
+  vertical-align: middle;
+}
 .select:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    background: var(--color);
-    height: 100px;
-    width: 150%;
-    border-radius: 50%;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 100px;
+  width: 150%;
+  border-radius: 50%;
 }
 
 button:hover {
-    color: #fff;
+  color: #fff;
 }
 
 button:before {
-    top: 100%;
-    left: 100%;
-    transition: all .7s;
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
 }
 
 button:hover:before {
-    top: -30px;
-    left: -30px;
+  top: -30px;
+  left: -30px;
 }
 
 button:active:before {
-    background: #3a0ca3;
-    transition: background 0s;
+  background: #3a0ca3;
+  transition: background 0s;
 }
 
-
 .isSelected {
-    background-color: #560bad;
-    color: #fff;
+  background-color: #560bad;
+  color: #fff;
 }
