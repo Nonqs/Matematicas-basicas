@@ -1,23 +1,27 @@
 import { useState } from "react";
 import "../../../styles/Intermediates.css";
 
-export function ToggleExponential({ handleSelectedCard, selectedCard }: {handleSelectedCard: (selected: string) => void, selectedCard: string | null}) {
+export function ToggleExponential({
+  handleSelectedCard,
+  selectedCard,
+  handleToggleExponent,
+  userExponents
+}: {
+  handleSelectedCard: (selected: string) => void;
+  selectedCard: string | null;
+  handleToggleExponent: (exponent: number) => void;
+  userExponents: number[]
+}) {
   const exponents = [1, 2, 3, 4, 5];
-  const [userExponents, setUserExponents] = useState<number[]>([]);
-   const selected = "toggle"
-
-  const handleToggle = (exponent: number) => {
-    setUserExponents((prevExponents) => {
-      if (prevExponents.includes(exponent)) {
-        return prevExponents.filter((exp) => exp !== exponent);
-      } else {
-        return [...prevExponents, exponent];
-      }
-    });
-  };
+  const selected = "toggle";
 
   return (
-    <div  className={`${selectedCard === "toggle" ?("card-selected") :("")} card`} onClick={()=>{handleSelectedCard(selected)}}>
+    <div
+      className={`${selectedCard === "toggle" ? "card-selected" : ""} card`}
+      onClick={() => {
+        handleSelectedCard(selected);
+      }}
+    >
       <h4>Practice</h4>
       <h3 className="subtitle">Multiple exponents</h3>
       <article className="buttons-container">
@@ -27,7 +31,7 @@ export function ToggleExponential({ handleSelectedCard, selectedCard }: {handleS
             className={`${
               userExponents.includes(exponent) ? "isSelected" : ""
             }`}
-            onClick={() => handleToggle(exponent)}
+            onClick={() => handleToggleExponent(exponent)}
           >
             x<sup>{exponent}</sup>
           </button>

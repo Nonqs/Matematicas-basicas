@@ -4,6 +4,7 @@ import { AdditionSubtraction } from "../pages/operations pages/Addition-substrac
 import { MultiplicationDivision } from "../pages/operations pages/Multiplication-division";
 import { Intermediate } from "../pages/intermediates/add-subs";
 import { ExponentialIntermediate } from "../pages/intermediates/expo";
+import { Exponentials } from "../pages/operations pages/Exponentials";
 
 export default function RoutesApp() {
     return (
@@ -14,6 +15,7 @@ export default function RoutesApp() {
                     <Route path="/add-sub" element={<Intermediate />} />
                     <Route path="/exp" element={<ExponentialIntermediate />} />
                     <Route path="/add-sub/:userNumbers/:userOperators" element={<AdditionSubtraction />} />
+                    <Route path="/exp/:selectedCard/:exponent" element={<Exponentials />} />
                     <Route path="/mult-div" element={<MultiplicationDivision />} />
                 </Routes>
             </BrowserRouter>

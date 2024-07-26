@@ -11,7 +11,7 @@ export function AdditionSubtraction() {
   const [answer, setAnswer] = useState<number | string>("");
   const [validation, setValidation] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [numbers, setNumbers] = useState<number[]>([]);
+  const [numbers, setNumbers] = useState<number[] >([]);
   const [operators, setOperators] = useState<string[]>([]);
   const [send, setSend] = useState<boolean | null>(null);
   const { userNumbers, userOperators } = useParams();
@@ -25,7 +25,9 @@ export function AdditionSubtraction() {
 
   useEffect(() => {
     if (numbers.length <= 0) {
-      setNumbers(generateNumbers({ userNumber }));
+
+      const result = generateNumbers({ userNumber, max: 100, min: 5 })
+      if(Array.isArray(result)) setNumbers(result);
       setOperators(generateOperators({ userOperator, userNumber }));
 
       setTimeout(() => {
