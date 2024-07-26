@@ -14,10 +14,10 @@ export function HomePage() {
             <h2 className="subtitle">Single operations problems</h2>
 
             <article className="buttons-container">
-              <Link to={"/"}>
+              <Link to={"/add"}>
                 <button>+</button>
               </Link>
-              <Link to={"/"}>
+              <Link to={"/sub"}>
                 <button>-</button>
               </Link>
               <Link to={"/"}>
