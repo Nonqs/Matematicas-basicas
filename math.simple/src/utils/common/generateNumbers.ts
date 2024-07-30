@@ -31,6 +31,19 @@ export default function generateNumbers({
       } while (module !== 0 || number1 === number2);
 
       generatedNumbers.push(number1, number2);
+    } else if(userType === "root"){
+      const root = min;
+      let number;
+      let result;
+
+      do {
+
+        number = Math.floor(Math.random() * max) + min;
+        result = Math.pow(number, 1/root)
+        
+      } while (!Number.isInteger(result));
+      
+      generatedNumbers.push(number);
     }
   }
 

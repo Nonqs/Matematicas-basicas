@@ -27,11 +27,11 @@ Visit the Math.simple website!
   - [ ] Logarithms and Exponents
 
 - **Single Operations:**
-  - [ ] Addition
-  - [ ] Subtraction
-  - [ ] Multiplication
-  - [ ] Exponents
-  - [ ] Roots
+  - [x] Addition
+  - [x] Subtraction
+  - [x] Multiplication
+  - [x] Exponents
+  - [x] Roots
   - [ ] Logarithms
 
 - **Geometric Operations:**
