@@ -13,6 +13,7 @@ import { Division } from "../pages/operationsPages/Division";
 import { Root } from "../pages/operationsPages/Root";
 import { RootIntermediate } from "../pages/intermediates/RootInter";
 import { LogarithmsIntermediate } from "../pages/intermediates/Log";
+import { Logarithms } from "../pages/operationsPages/Logarithms";
 
 export default function RoutesApp() {
   return (
@@ -42,6 +43,7 @@ export default function RoutesApp() {
           <Route path="/mult" element={<Multiplication />} />
           <Route path="/div/:type" element={<Division />} />
           <Route path="/root/:selectedCard/:root" element={<Root />} />
+          <Route path="/log/:selectedCard/:log" element={<Logarithms />} />
 
           {/* Combined operations pages */}
 

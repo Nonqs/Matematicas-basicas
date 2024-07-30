@@ -12,7 +12,7 @@ export function SingleLogarithms({
   handleSelectLog: (exponent: number) => void;
   userLog: number | null;
 }) {
-  const logs = [1, 2, 3, 4, 5];
+  const logs = [2, 3, 5, 6, 8, 10];
   const selected = "single";
 
   return (

@@ -44,6 +44,21 @@ export default function generateNumbers({
       } while (!Number.isInteger(result));
       
       generatedNumbers.push(number);
+    } else if(userType === "log"){
+
+      const base = min;
+      let number1;
+      let number2;
+      console.log(base)
+
+      do {
+
+        number2 = Math.floor(Math.random() * max) + 1;
+        number1 = Math.pow(base, number2)
+        
+      } while (!Number.isInteger(number1));
+      
+      generatedNumbers.push(number1, number2);
     }
   }
 
