@@ -20,20 +20,20 @@ export function RootIntermediate() {
     }
   };
 
-  const handleToggleRoot = (exponent: number[]) => {
-    setUserRoots(exponent);
+  const handleToggleRoot = (root: number[]) => {
+    setUserRoots(root);
   };
 
-  const handleSelectRoot = (exponent: number) => {
-    setUserRoot(exponent);
+  const handleSelectRoot = (root: number) => {
+    setUserRoot(root);
   };
 
   const handleNextClick = () => {
     if (selectedCard === "single" && userRoot !== null) {
       navigate(`/root/${selectedCard}/${userRoot}`);
     } else if (selectedCard === "toggle" && userRoots.length > 0) {
-      const exponents = userRoots.join("-");
-      navigate(`/root/${selectedCard}/${exponents}`);
+      const roots = userRoots.join("-");
+      navigate(`/root/${selectedCard}/${roots}`);
     }
   };
 
