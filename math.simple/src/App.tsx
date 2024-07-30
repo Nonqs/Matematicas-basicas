@@ -1,13 +1,15 @@
-import RoutesApp from './routes/Routes'
-import "./styles/App.css"
+import { MathJaxContext } from "better-react-mathjax";
+import RoutesApp from "./routes/Routes";
+import "./styles/App.css";
 
 function App() {
-
   return (
     <>
-      <RoutesApp />
+      <MathJaxContext>
+        <RoutesApp />
+      </MathJaxContext>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
