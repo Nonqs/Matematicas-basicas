@@ -2,18 +2,18 @@ import { useState } from "react";
 import "../../../styles/Intermediates.css";
 import { MathJax } from "better-react-mathjax";
 
-export function ToggleRoot({
+export function ToggleLogarithms({
   handleSelectedCard,
   selectedCard,
-  handleToggleRoot,
-  userRoots,
+  handleToggleLog,
+  userLogs,
 }: {
   handleSelectedCard: (selected: string) => void;
   selectedCard: string | null;
-  handleToggleRoot: (root: number[]) => void;
-  userRoots: number[];
+  handleToggleLog: (exponent: number) => void;
+  userLogs: number[];
 }) {
-  const roots = [2, 3];
+  const logs = [1, 2, 3, 4, 5];
   const selected = "toggle";
 
   return (
@@ -21,25 +21,24 @@ export function ToggleRoot({
       className={`${selectedCard === "toggle" ? "card-selected" : ""} card`}
       onClick={() => {
         handleSelectedCard(selected);
-        handleToggleRoot([2,3])
       }}
     >
       <article className="text-container">
         <h4 className="no-margin">Practice</h4>
-        <h3 className="subtitle no-margin">multiple Root Types</h3>
+        <h3 className="subtitle no-margin">Logarithms with Multiple Bases</h3>
       </article>
       <article className="buttons-container">
-        {roots.map((root) => (
+        {logs.map((log) => (
           <button
-            key={root}
-            className={`${
-              userRoots.includes(root) ? "isSelected" : ""
-            }`}
+            key={log}
+            className={`${userLogs.includes(log) ? "isSelected" : ""}`}
+            onClick={() => handleToggleLog(log)}
           >
-            <MathJax>{`\\( \\sqrt[${root}]{x} \\)`}</MathJax>
+            <MathJax>{`\\( \\log_{${log}}(x) \\)`}</MathJax>
           </button>
         ))}
       </article>
+      <span>(select 2 or more)</span>
     </div>
   );
 }

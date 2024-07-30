@@ -12,6 +12,7 @@ import { DivisionIntermediate } from "../pages/intermediates/Div";
 import { Division } from "../pages/operationsPages/Division";
 import { Root } from "../pages/operationsPages/Root";
 import { RootIntermediate } from "../pages/intermediates/RootInter";
+import { LogarithmsIntermediate } from "../pages/intermediates/Log";
 
 export default function RoutesApp() {
   return (
@@ -28,6 +29,7 @@ export default function RoutesApp() {
           <Route path="/exp" element={<ExponentialIntermediate />} />
           <Route path="/div" element={<DivisionIntermediate />} />
           <Route path="/root" element={<RootIntermediate />} />
+          <Route path="/log" element={<LogarithmsIntermediate />} />
 
           {/* Basic operations pages */}
 

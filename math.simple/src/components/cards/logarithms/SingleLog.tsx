@@ -1,18 +1,18 @@
 import { MathJax } from "better-react-mathjax";
 import "../../../styles/Intermediates.css";
 
-export function SingleRoot({
+export function SingleLogarithms({
   handleSelectedCard,
   selectedCard,
-  handleSelectRoot,
-  userRoot,
+  handleSelectLog,
+  userLog,
 }: {
   handleSelectedCard: (selected: string) => void;
   selectedCard: string | null;
-  handleSelectRoot: (root: number) => void;
-  userRoot: number | null;
+  handleSelectLog: (exponent: number) => void;
+  userLog: number | null;
 }) {
-  const roots = [2, 3];
+  const logs = [1, 2, 3, 4, 5];
   const selected = "single";
 
   return (
@@ -23,21 +23,19 @@ export function SingleRoot({
       }}
     >
       <article className="text-container">
-      <h4 className="no-margin">Practice</h4>
-      <h3 className="subtitle no-margin">Single Root Type</h3>
+        <h4 className="no-margin">Practice</h4>
+        <h3 className="subtitle no-margin">Logarithms With a Single Base</h3>
       </article>
       <article className="buttons-container">
-        {roots.map((root) => (
+        {logs.map((log) => (
           <button
-            className={`${
-              userRoot === root ? "isSelected" : ""
-            }`}
-            key={root}
+            className={`${userLog === log ? "isSelected" : ""}`}
+            key={log}
             onClick={() => {
-              handleSelectRoot(root);
+              handleSelectLog(log);
             }}
           >
-            <MathJax>{`\\( \\sqrt[${root}]{x} \\)`}</MathJax>
+            <MathJax>{`\\( \\log_{${log}}(x) \\)`}</MathJax>
           </button>
         ))}
       </article>

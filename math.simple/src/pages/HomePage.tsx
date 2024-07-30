@@ -35,7 +35,7 @@ export function HomePage() {
               <Link to={"/root"}>
                 <button><MathJax>{"\\( \\sqrt{x} \\)"}</MathJax></button>
               </Link>
-              <Link to={"/"}>
+              <Link to={"/log"}>
                 <button>log(x)</button>
               </Link>
             </article>
