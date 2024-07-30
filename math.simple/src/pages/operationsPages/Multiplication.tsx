@@ -1,34 +1,23 @@
 import { useState, useEffect, FormEvent } from "react";
-import { useParams } from "react-router-dom";
 import "../../styles/OperationPage.css";
 import generateNumbers from "../../utils/common/generateNumbers";
-import { generateOperators } from "../../utils/common/generateOperator";
 import { arithmeticValidator } from "../../utils/results/arithmeticValidator";
 import { Title } from "../../components/Title";
 import { Load } from "../../components/Load";
 
-export function AdditionSubtraction() {
+export function Multiplication() {
   const [answer, setAnswer] = useState<number | string>("");
   const [validation, setValidation] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [numbers, setNumbers] = useState<number[] >([]);
-  const [operators, setOperators] = useState<string[]>([]);
+  const [numbers, setNumbers] = useState<number[]>([]);
   const [send, setSend] = useState<boolean | null>(null);
-  const { userNumbers, userOperators } = useParams();
-  let userType: number;
-  let userOperator: string;
 
-  if (userNumbers && userOperators) {
-    userType = parseInt(userNumbers);
-    userOperator = userOperators;
-  }
+  const operators = ["+", "*"];
 
   useEffect(() => {
     if (numbers.length <= 0) {
-
-      const result = generateNumbers({ userType, max: 100, min: 5 })
-      if(Array.isArray(result)) setNumbers(result);
-      setOperators(generateOperators({ userOperator, userNumber: userType }));
+      const result = generateNumbers({ userType: 2, max: 100, min: 5 });
+      if (Array.isArray(result)) setNumbers(result);
 
       setTimeout(() => {
         setIsLoading(false);
@@ -70,10 +59,9 @@ export function AdditionSubtraction() {
           <div>
             <form onSubmit={validateAnswer}>
               <div className="numbers">
-              {numbers.map((number, index) => (
+                {numbers.map((number, index) => (
                   <div key={index}>
-                    {(index === 0  && operators[0] !== "-") 
-                    ?(
+                    {index === 0 ? (
                       <article>
                         <span>
                           {number}

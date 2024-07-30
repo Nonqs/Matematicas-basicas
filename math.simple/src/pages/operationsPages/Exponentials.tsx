@@ -33,7 +33,7 @@ export function Exponentials() {
 
   useEffect(() => {
     if (number === null) {
-      const result = generateNumbers({ userNumber: 1, max: 9, min: 2 });
+      const result = generateNumbers({ userType: 1, max: 9, min: 2 });
       if (!Array.isArray(result)) {
         setNumber(result);
       }

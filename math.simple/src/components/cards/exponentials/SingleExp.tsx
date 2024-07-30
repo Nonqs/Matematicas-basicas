@@ -21,8 +21,10 @@ export function SingleExponential({
         handleSelectedCard(selected);
       }}
     >
-      <h4>Practice</h4>
-      <h3 className="subtitle">Only 1 exponent</h3>
+      <article className="text-container">
+      <h4 className="no-margin">Practice</h4>
+      <h3 className="subtitle no-margin">Only 1 exponent</h3>
+      </article>
       <article className="buttons-container">
         {exponents.map((exponent) => (
           <button

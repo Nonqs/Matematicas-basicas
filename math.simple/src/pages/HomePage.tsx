@@ -3,6 +3,7 @@ import circle from "../public/svg/circle.svg";
 import rectangle from "../public/svg/rectangle.svg";
 import square from "../public/svg/square.svg";
 import triangle from "../public/svg/triangle.svg";
+import { MathJax } from "better-react-mathjax";
 
 export function HomePage() {
   return (
@@ -20,10 +21,10 @@ export function HomePage() {
               <Link to={"/sub"}>
                 <button>-</button>
               </Link>
-              <Link to={"/"}>
+              <Link to={"/mult"}>
                 <button>x</button>
               </Link>
-              <Link to={"/"}>
+              <Link to={"/div"}>
                 <button>/</button>
               </Link>
               <Link to={"/exp"}>
@@ -31,8 +32,8 @@ export function HomePage() {
                   x<sup>2</sup>
                 </button>
               </Link>
-              <Link to={"/"}>
-                <button>√x</button>
+              <Link to={"/root"}>
+                <button><MathJax>{"\\( \\sqrt{x} \\)"}</MathJax></button>
               </Link>
               <Link to={"/"}>
                 <button>log(x)</button>

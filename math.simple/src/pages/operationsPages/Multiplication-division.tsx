@@ -25,7 +25,7 @@ export function MultiplicationDivision() {
         generateOperators({ userOperator, userNumber: quantityOfNumbers })
       );
 
-      const result =  generateNumbers({ userNumber: quantityOfNumbers, min: 1, max: 10 })
+      const result =  generateNumbers({ userType: quantityOfNumbers, min: 1, max: 10 })
       if (Array.isArray(result)) setNumbers(result);
 
       setTimeout(() => {

@@ -16,7 +16,7 @@ export function Substraction() {
 
   useEffect(() => {
     if (numbers.length <= 0) {
-      const result = generateNumbers({ userNumber: 2, max: 100, min: 5 });
+      const result = generateNumbers({ userType: 2, max: 100, min: 5 });
       if (Array.isArray(result)) setNumbers(result);
 
       setTimeout(() => {

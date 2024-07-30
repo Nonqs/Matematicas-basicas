@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/pages/intermediates/add-subs.tsx"],
+  "include": ["src", "src/pages/intermediates/Add-subs.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

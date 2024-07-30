@@ -5,12 +5,12 @@ export function ToggleExponential({
   handleSelectedCard,
   selectedCard,
   handleToggleExponent,
-  userExponents
+  userExponents,
 }: {
   handleSelectedCard: (selected: string) => void;
   selectedCard: string | null;
   handleToggleExponent: (exponent: number) => void;
-  userExponents: number[]
+  userExponents: number[];
 }) {
   const exponents = [1, 2, 3, 4, 5];
   const selected = "toggle";
@@ -22,8 +22,10 @@ export function ToggleExponential({
         handleSelectedCard(selected);
       }}
     >
-      <h4>Practice</h4>
-      <h3 className="subtitle">Multiple exponents</h3>
+      <article className="text-container">
+        <h4 className="no-margin">Practice</h4>
+        <h3 className="subtitle no-margin">Multiple exponents</h3>
+      </article>
       <article className="buttons-container">
         {exponents.map((exponent) => (
           <button
