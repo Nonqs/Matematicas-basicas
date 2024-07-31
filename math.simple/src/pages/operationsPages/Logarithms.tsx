@@ -31,32 +31,47 @@ export function Logarithms() {
   }, [selectedCard, log]);
 
   useEffect(() => {
-    if (logs !== null) {
+    if (selectLog === null) {
       let selectedLog;
       if (Array.isArray(logs)) {
         const max = logs.length;
-        const newlogIndex = Math.floor(Math.random() * max);
-        selectedLog = logs[newlogIndex];
+        const newLogIndex = Math.floor(Math.random() * max);
+        selectedLog = logs[newLogIndex];
+        console.log(logs[newLogIndex])
       } else {
         selectedLog = logs;
+        console.log("s")
       }
       setSelectLog(selectedLog);
-
-      if (number === null && selectedLog !== null) {
-        console.log(selectLog)
-        const result = generateNumbers({
-          userType: "log",
-          max: selectedLog === 2 ?(10) :(selectLog === 3 ?(6) :(selectLog === 5?(4):(selectLog === 6 ?(3):(selectLog === 8 ?(2) :(8))))),
-          min: selectedLog,
-        });
-        setNumber(result);
-      }
-
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
     }
-  }, [logs, number]);
+  }, [selectLog]);
+
+  useEffect(()=>{
+    if (number === null && selectLog !== null) {
+      const maxVal = selectLog === 2
+        ? 10
+        : selectLog === 3
+        ? 6
+        : selectLog === 5
+        ? 4
+        : selectLog === 6
+        ? 3
+        : selectLog === 8
+        ? 2
+        : 8; 
+      const result = generateNumbers({
+        userType: "log",
+        max: maxVal,
+        min: selectLog,
+      });
+      setNumber(result);
+    }
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, [selectLog, number])
+  
 
   const validateAnswer = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -116,6 +131,7 @@ export function Logarithms() {
               onClick={() => {
                 setNumber(null);
                 setIsLoading(true);
+                setSelectLog(null)
               }}
             >
               Skip

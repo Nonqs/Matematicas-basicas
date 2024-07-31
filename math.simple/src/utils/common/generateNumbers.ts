@@ -49,7 +49,6 @@ export default function generateNumbers({
       const base = min;
       let number1;
       let number2;
-      console.log(base)
 
       do {
 

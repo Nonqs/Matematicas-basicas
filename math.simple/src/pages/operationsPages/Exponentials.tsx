@@ -3,10 +3,9 @@ import { useParams } from "react-router-dom";
 import generateNumbers from "../../utils/common/generateNumbers";
 import { Title } from "../../components/Title";
 import { Load } from "../../components/Load";
-import { arithmeticValidator } from "../../utils/results/arithmeticValidator";
 
 export function Exponentials() {
-  const [number, setNumber] = useState<number | null>(null);
+  const [number, setNumber] = useState<number[] | null>(null);
   const [answer, setAnswer] = useState<number | string>("");
   const [validation, setValidation] = useState<boolean | null>(null);
   const [exponential, setExponential] = useState<number | number[] | null>();
@@ -34,9 +33,7 @@ export function Exponentials() {
   useEffect(() => {
     if (number === null) {
       const result = generateNumbers({ userType: 1, max: 9, min: 2 });
-      if (!Array.isArray(result)) {
-        setNumber(result);
-      }
+      setNumber(result);
     }
 
     setTimeout(() => {
@@ -60,7 +57,7 @@ export function Exponentials() {
     e.preventDefault();
 
     if (number && selectExponent) {
-      const result = number ** selectExponent;
+      const result = number[0] ** selectExponent;
       setSend(true);
 
       if (result === Number(answer)) {
