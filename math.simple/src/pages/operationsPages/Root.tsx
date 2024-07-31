@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import generateNumbers from "../../utils/common/generateNumbers";
 import { Title } from "../../components/Title";
 import { Load } from "../../components/Load";
-import { arithmeticValidator } from "../../utils/results/arithmeticValidator";
 import { MathJax } from "better-react-mathjax";
 
 export function Root() {
@@ -26,7 +25,6 @@ export function Root() {
         setRoot(exponentArray);
       } else {
         const exponentNumber = parseInt(root, 10);
-        console.log("Single Exponent:", exponentNumber);
         setRoot(exponentNumber);
       }
     }

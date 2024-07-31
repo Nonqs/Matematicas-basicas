@@ -37,10 +37,8 @@ export function Logarithms() {
         const max = logs.length;
         const newLogIndex = Math.floor(Math.random() * max);
         selectedLog = logs[newLogIndex];
-        console.log(logs[newLogIndex])
       } else {
         selectedLog = logs;
-        console.log("s")
       }
       setSelectLog(selectedLog);
     }

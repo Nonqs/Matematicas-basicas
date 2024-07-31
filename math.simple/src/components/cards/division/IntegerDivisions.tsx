@@ -6,8 +6,6 @@ export function IntegerDivisions({
 }: {
   handleSelectedCard: (selected: string) => void;
   selectedCard: string | null;
-  handleSelectExponent: (exponent: number) => void;
-  userExponent: number | null;
 }) {
   const selected = "integer";
 

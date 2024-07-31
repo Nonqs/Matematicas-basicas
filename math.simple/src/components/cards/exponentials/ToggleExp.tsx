@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../../../styles/Intermediates.css";
 
 export function ToggleExponential({

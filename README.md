@@ -32,7 +32,7 @@ Visit the Math.simple website!
   - [x] Multiplication
   - [x] Exponents
   - [x] Roots
-  - [ ] Logarithms
+  - [x] Logarithms
 
 - **Geometric Operations:**
   - [ ] Areas of shapes

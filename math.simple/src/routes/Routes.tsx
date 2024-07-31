@@ -14,6 +14,8 @@ import { Root } from "../pages/operationsPages/Root";
 import { RootIntermediate } from "../pages/intermediates/RootInter";
 import { LogarithmsIntermediate } from "../pages/intermediates/Log";
 import { Logarithms } from "../pages/operationsPages/Logarithms";
+import { GeometryIntermediate } from "../pages/intermediates/Geo";
+import { Triangle } from "../pages/GeometryPages/Triangle";
 
 export default function RoutesApp() {
   return (
@@ -31,6 +33,7 @@ export default function RoutesApp() {
           <Route path="/div" element={<DivisionIntermediate />} />
           <Route path="/root" element={<RootIntermediate />} />
           <Route path="/log" element={<LogarithmsIntermediate />} />
+          <Route path="/geo/:figure" element={<GeometryIntermediate />} />
 
           {/* Basic operations pages */}
 
@@ -52,6 +55,11 @@ export default function RoutesApp() {
             element={<AdditionSubtraction />}
           />
           <Route path="/mult-div" element={<MultiplicationDivision />} />
+
+          {/* Geometry operations pages */}
+
+          <Route path="/geo/:figure/:selection" element={<Triangle />} />
+
         </Routes>
       </BrowserRouter>
     </>

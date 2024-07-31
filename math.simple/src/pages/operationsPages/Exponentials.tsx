@@ -24,7 +24,6 @@ export function Exponentials() {
         setExponential(exponentArray);
       } else {
         const exponentNumber = parseInt(exponent, 10);
-        console.log("Single Exponent:", exponentNumber);
         setExponential(exponentNumber);
       }
     }

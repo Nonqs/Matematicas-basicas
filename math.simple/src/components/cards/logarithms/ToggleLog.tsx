@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../../../styles/Intermediates.css";
 import { MathJax } from "better-react-mathjax";
 
