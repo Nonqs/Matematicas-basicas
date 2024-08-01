@@ -6,7 +6,7 @@ Math.simple is a math problem generator designed to help those who want to pract
 
 Visit the Math.simple website!
 
-[mathsimple.netlify.app](https://mathsimple.netlify.app/)
+[math.simple](https://mathsimple-nonqs-projects.vercel.app/)
 
 ## Tech Stack
 

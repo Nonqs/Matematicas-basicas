@@ -43,24 +43,24 @@ export function HomePage() {
           <div className="geo-operations">
             <h2 className="subtitle">Geometry, areas and perimeters</h2>
             <article className="buttons-container">
-              <Link to={"/"}>
+              <Link to={""}>
                 <button>
                   <img src={triangle} alt="triangle" />
                 </button>
               </Link>
-              <Link to={"/"}>
+              <Link to={""}>
                 <button>
-                  <img src={square} alt="triangle" />
+                  <img src={square} alt="square" />
                 </button>
               </Link>
-              <Link to={"/"}>
+              <Link to={""}>
                 <button>
-                  <img src={rectangle} alt="triangle" />
+                  <img src={rectangle} alt="rectangle" />
                 </button>
               </Link>
-              <Link to={"/"}>
+              <Link to={""}>
                 <button>
-                  <img src={circle} alt="triangle" />
+                  <img src={circle} alt="circle" />
                 </button>
               </Link>
             </article>
